@@ -2,14 +2,11 @@
 buildscript {
     repositories {
         mavenCentral()
-        jcenter()
-        maven {
-            url 'https://repo.spring.io/libs-milestone'
-        }
+//        jcenter()
     }
     dependencies {
         classpath "org.springframework.cloud:spring-cloud-contract-gradle-plugin:$springCloudContractDependenciesVersion"
-        classpath "com.avast.gradle:gradle-docker-compose-plugin:$dockerComposePluginVersion"
+//        classpath "com.avast.gradle:gradle-docker-compose-plugin:$dockerComposePluginVersion"
         classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.0'
     }
 }
@@ -17,7 +14,7 @@ buildscript {
 apply plugin: FtgoServicePlugin
 
 apply plugin: 'spring-cloud-contract'
-apply plugin: 'docker-compose'
+//apply plugin: 'docker-compose'
 apply plugin: 'com.google.protobuf'
 
 apply plugin: IntegrationTestsPlugin
@@ -49,31 +46,31 @@ compileTestGroovy.enabled=false
 componentTest.dependsOn(assemble)
 
 
-dockerCompose {
+//dockerCompose {
+//
+//    startedServices = [ 'not-used']
+//
+//    integrationTests {
+//        if (System.getenv("FTGO_DOCKER_COMPOSE_FILES") != null)
+//            useComposeFiles = System.getenv("FTGO_DOCKER_COMPOSE_FILES").split(",").collect { "../" + it }
+//
+//        startedServices = [ 'mysql']
+//        stopContainers = true
+//    }
+//
+//    componentTests {
+//        if (System.getenv("FTGO_DOCKER_COMPOSE_FILES") != null)
+//            useComposeFiles = System.getenv("FTGO_DOCKER_COMPOSE_FILES").split(",").collect { "../" + it }
+//        startedServices = [ 'ftgo-order-service']
+//        //forceRecreate = true
+//	stopContainers = true
+//    }
+//
+//}
 
-    startedServices = [ 'not-used']
+//integrationTest.dependsOn(integrationTestsComposeUp)
 
-    integrationTests {
-        if (System.getenv("FTGO_DOCKER_COMPOSE_FILES") != null)
-            useComposeFiles = System.getenv("FTGO_DOCKER_COMPOSE_FILES").split(",").collect { "../" + it }
-
-        startedServices = [ 'mysql']
-        stopContainers = true
-    }
-
-    componentTests {
-        if (System.getenv("FTGO_DOCKER_COMPOSE_FILES") != null)
-            useComposeFiles = System.getenv("FTGO_DOCKER_COMPOSE_FILES").split(",").collect { "../" + it }
-        startedServices = [ 'ftgo-order-service']
-        //forceRecreate = true
-	stopContainers = true
-    }
-
-}
-
-integrationTest.dependsOn(integrationTestsComposeUp)
-
-componentTest.dependsOn(componentTestsComposeUp)
+//componentTest.dependsOn(componentTestsComposeUp)
 
 
 protobuf {

@@ -1,11 +1,9 @@
 buildscript {
     repositories {
-        maven {
-            url 'https://repo.spring.io/libs-milestone'
-        }
-        dependencies {
-            classpath "io.spring.gradle:dependency-management-plugin:$springDependencyManagementPluginVersion"
-        }
+        mavenCentral()
+    }
+    dependencies {
+        classpath "io.spring.gradle:dependency-management-plugin:$springDependencyManagementPluginVersion"
     }
 }
 
@@ -29,15 +27,15 @@ configurations.all {
 
 repositories {
     mavenCentral()
-    maven {
-        url 'https://repo.spring.io/libs-milestone'
-    }
-    maven {
-        url 'http://oss.jfrog.org/oss-snapshot-local/'
-    }
-    maven {
-        url "${project.rootDir}/build/repo"
-    }
+//    maven {
+//        url 'https://repo.spring.io/libs-milestone'
+//    }
+//    maven {
+//        url 'http://oss.jfrog.org/oss-snapshot-local/'
+//    }
+//    maven {
+//        url "${project.rootDir}/build/repo"
+//    }
 }
 
 
